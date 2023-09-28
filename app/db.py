@@ -1,9 +1,11 @@
 
 from pymongo.mongo_client import MongoClient
-import settings
+import os
+
+MONGO_URI = os.getenv("MONGO_URI")
 
 # Create a new client and connect to the server
-client = MongoClient(settings.uri)
+client = MongoClient(MONGO_URI)
     
 auth_db = client["archisoft"]["auth"]
 permissions_db = client["archisoft"]["permissions"]
