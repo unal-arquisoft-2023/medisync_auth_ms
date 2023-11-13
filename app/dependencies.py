@@ -9,6 +9,7 @@ from .utils import pwd_context, oauth2_scheme
 from .schemas import TokenData, Auth, UserInDB
 from .constants import SECRET_KEY, ALGORITHM
 from .db import auth_db, permissions_db
+from .ldap import request_role
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
@@ -95,6 +96,8 @@ async def validate_role(
 ):
     result = permissions_db.find_one({"url": url_path}, {"_id": 0})
     if result:
+        # check ldap role
+        print(request_role(user_auth.role.value))
         if user_auth.role.value in result:
             if method in result[user_auth.role.value]:
                 return True

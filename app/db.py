@@ -1,7 +1,10 @@
 
 from pymongo.mongo_client import MongoClient
+from dotenv import load_dotenv
+from pathlib import Path
 import os
 
+load_dotenv(dotenv_path=Path('.env'))
 MONGO_URI = os.getenv("MONGO_URI")
 
 # Create a new client and connect to the server

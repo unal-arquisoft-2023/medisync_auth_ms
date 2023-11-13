@@ -12,6 +12,7 @@ class TokenData(BaseModel):
 class Role(str, Enum):
     admin = "admin"
     patient = "patient"
+    doctor = "doctor"
 
 class Auth(BaseModel):
     id: str
